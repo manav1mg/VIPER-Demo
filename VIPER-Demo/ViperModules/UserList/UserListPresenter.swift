@@ -14,8 +14,8 @@ final class UserListPresenter {
   // MARK: - Private properties -
   
   weak var view: UserListViewProtocol?
-  private var interactor: UserListInteractorProtocol?
-  private var wireframe: UserListWireframeProtocol?
+  private var interactor: UserListInteractorProtocol
+  private var wireframe: UserListWireframeProtocol
   private var users: [UserEntity] = []
   // MARK: - Lifecycle -
   
@@ -34,8 +34,8 @@ extension UserListPresenter: UserListPresenterProtocol {
   func viewDidLoad() {
     Task { [weak self] in
       do {
-        let users = try await interactor?.getUsers()
-        self?.users = users ?? []
+        let users = try await interactor.getUsers()
+        self?.users = users 
         self?.view?.reloadTableView()
       } catch {
         // error handling
@@ -44,7 +44,7 @@ extension UserListPresenter: UserListPresenterProtocol {
   }
   
   func userSelected(at index: IndexPath) {
-    wireframe?.navigateToUserDetail(for: users[index.row])
+    wireframe.navigateToUserDetail(for: users[index.row])
   }
   
   func numberOfRows() -> Int {
