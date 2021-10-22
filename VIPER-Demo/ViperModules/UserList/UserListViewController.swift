@@ -20,7 +20,7 @@ final class UserListViewController: UIViewController, UserListViewProtocol {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureTableView()
-    presenter?.viewDidLoad()
+    presenter.viewDidLoad()
   }
   
   func configureTableView() {
