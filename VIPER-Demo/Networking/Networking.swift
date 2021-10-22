@@ -23,7 +23,6 @@ class APIClient: ProviderType {
           continuation.resume(throwing: error)
         } else if let data = data {
           continuation.resume(returning: data)
-          print(String(data: data, encoding: .utf8))
         } else {
           continuation.resume(throwing: NetworkError.dataNotFound)
         }
